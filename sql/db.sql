@@ -1,4 +1,4 @@
- --
+--
 -- PostgreSQL database dump
 --
 
@@ -34,44 +34,41 @@ CREATE DATABASE rtjvm;
 
 CREATE TYPE gender AS ENUM('M', 'F');
 
-CREATE TABLE employees (
-    emp_no      INT             NOT NULL,
+CREATE TABLE users (
+    user_id      INT             NOT NULL,
     birth_date  DATE            NOT NULL,
     first_name  VARCHAR(14)     NOT NULL,
     last_name   VARCHAR(16)     NOT NULL,
     gender      gender          NULL,
     hire_date   DATE            NOT NULL,
-    PRIMARY KEY (emp_no)
+    PRIMARY KEY (user_id)
 );
 
 CREATE TABLE devices (
-    device_id     CHAR(4)         NOT NULL,
-    device_name   VARCHAR(40)     NOT NULL,
-    PRIMARY KEY (device_id)
+    id     CHAR(4)         NOT NULL,
+    name   VARCHAR(40)     NOT NULL,
+    PRIMARY KEY (id),
+    UNIQUE      (name)
 );
 
+--
+-- Data for Name: departments; Type: TABLE DATA; Schema: public; Owner: docker
+--
 
-
-COPY public.devices (device_id, device_name) FROM stdin;
-d001	Iphone
-d002	Zyxel
-d003	TestOne
-d004	One2One
-d005	Samsung_s8
-d006	Samsung_s9
-d007	Samsung_s10
-d008	Nokia
-d009	Sony
+COPY public.devices (id, name) FROM stdin;
+d001	Marketing
+d002	Finance
+d003	Human Resources
+d004	Production
+d005	Development
+d006	Quality Management
+d007	Sales
+d008	Research
+d009	Customer Service
 \.
 
 
-
-
---
--- Data for Name: employees; Type: TABLE DATA; Schema: public; Owner: docker
---
-
-COPY public.employees (emp_no, birth_date, first_name, last_name, gender, hire_date) FROM stdin;
+COPY public.users (user_id, birth_date, first_name, last_name, gender, hire_date) FROM stdin;
 10010	1963-06-01	Duangkaew	Piveteau	F	1989-08-24
 10020	1952-12-24	Mayuko	Warwick	M	1991-01-26
 10030	1958-07-14	Elvis	Demeyer	M	1994-02-17
@@ -196,3 +193,13 @@ COPY public.employees (emp_no, birth_date, first_name, last_name, gender, hire_d
 11220	1962-06-25	Sahrah	Figueira	F	1989-11-24
 11230	1956-12-28	Yakichi	Tzvieli	M	1990-12-06
 \.
+
+
+--
+-- Data for Name: salaries; Type: TABLE DATA; Schema: public; Owner: docker
+--
+
+--
+-- PostgreSQL database dump complete
+--
+
